@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = 3002;
 
 
 
@@ -11,6 +11,14 @@ function Constractor(title, posterPath, overview) {
   this.overview = overview;
 }
 
+function error500(res){
+  return res.status(500).json({ status: 500, responseText: "Sorry, something went wrong" });
+}
+
+function error404(res){
+  return res.status(404).json({ status: 404, responseText: "page not found error" });
+}
+
 function homePageHandler(req, res) {
   try {
     let array = new Array();
@@ -18,7 +26,7 @@ function homePageHandler(req, res) {
     array.push(newFilm);
     res.json(array);
   } catch (error) {
-    res.status(500).json({ status: 500, responseText: "Sorry, something went wrong" });
+    error500(res);
   }
 
 }
@@ -27,7 +35,7 @@ function welcom(req, res) {
   try {
     res.send("Welcome to Favorite Page");
   } catch (err) {
-    res.status(500).json({ status: 500, responseText: "Sorry, something went wrong" });
+    error500(res);
   }
 }
 
@@ -37,7 +45,7 @@ app.get('/', homePageHandler);
 app.get('/favorite', welcom);
 
 app.get('*', (req, res) => {
-  res.status(404).json({ status: 404, responseText: "page not found error" });
+  error404(res);
 });
 
 app.listen(port, () => {
