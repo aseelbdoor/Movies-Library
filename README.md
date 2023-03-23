@@ -9,12 +9,18 @@
 
 ![WRRC3](./image/wrrc3.png)
 
+![WRRC4](./image/wrrc4.png)
+
+![WRRC5](./image/wrrc5.png)
+
 ## Overview
 - This movie application will help you to check the latest movies based on categories
 - You can check about the trend movies 
 - You can also searching abou the movie you want
 - Of course, you can also search for the seasons you want from your movie by ID
-- Finally, you can read all the reviews of other customers by ID as well
+- You can read all the reviews of other customers by ID as well
+- And, You can give your opinion in any movie you want
+- Finally, you can read all opinion you or other customer have been written 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 - put `npm init -y` in termenal
@@ -24,4 +30,4 @@
 
 ## Project Features
 <!-- What are the features included in you app -->
-This app will handle all possible errors and give you the exact information you want
+This app will handle all possible errors and give you the exact information you want and save your own opinion
