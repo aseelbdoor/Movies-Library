@@ -102,13 +102,12 @@ function customerReview(req,res){
 
 function addMovie(req,res){
   let {name,myComment}=req.body;
-  res.send("DONE");
   let sql = `INSERT INTO myMovies(movieName,comment) VALUES ($1,$2)`;
   let values=[name,myComment];
   client.query(sql,values).then((result)=>{
     res.json('The data saved');
   }).catch((err)=>{
-    error500(err);
+    error500(err,req,res);
   })
 }
 
