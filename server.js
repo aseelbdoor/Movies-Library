@@ -116,9 +116,49 @@ function getMovies(req,res){
   client.query(sql).then((result)=>{
     res.json(result.rows);
   }).catch((err)=>{
-    error500(err);
+    error500(err,req,res);
   })
 }
+
+function upadteMovie(req,res){
+  let id= req.params.id;
+  let {name,myComment}=req.body;
+  let values=[name,myComment,id];
+  let sql= `UPDATE myMovies SET moviename = $1, comment = $2 WHERE id = $3`;
+  client.query(sql,values).then((result)=>{
+    res.send("Done");
+  }).catch((err)=>{
+    error500(err,req,res);
+  })
+}
+
+function deleteMovie(req,res){
+  let id= req.params.id;
+  let values=[id];
+  let sql=`DELETE FROM myMovies WHERE id = $1`;
+  client.query(sql,values).then((result)=>{
+    res.send('Done');
+  }).catch((err)=>{
+    error500(err,req,res);
+  })
+}
+
+function getMovie(req,res){
+  let id= req.params.id;
+  let values=[id];
+  let sql=`SELECT * FROM myMovies WHERE id = $1`;
+  client.query(sql,values).then((result)=>{
+    if (result.rows.length===0){
+      res.send('This movie dose not exist');
+    }
+    else{
+      res.json(result.rows);
+    }
+  }).catch((err)=>{
+    error500(err,req,res);
+  })
+}
+
 
 
 // Calling and her method
@@ -131,6 +171,9 @@ app.get('/review',customerReview);//Retrieve TV show review example: http://loca
 // DATADASE PART 
 app.post('/addMovie',addMovie);
 app.get('/getMovies',getMovies);
+app.put('/UPDATE/:id',upadteMovie);
+app.delete('/DELETE/:id',deleteMovie);
+app.get('/getMovie/:id',getMovie);
 app.get('*', error404);
 
 
