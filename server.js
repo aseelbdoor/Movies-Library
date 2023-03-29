@@ -105,7 +105,7 @@ function addMovie(req,res){
   let sql = `INSERT INTO myMovies(movieName,comment) VALUES ($1,$2)`;
   let values=[name,myComment];
   client.query(sql,values).then((result)=>{
-    res.json('The data saved');
+    res.stutus(201).res.json('The data saved');
   }).catch((err)=>{
     error500(err,req,res);
   })
@@ -126,7 +126,7 @@ function upadteMovie(req,res){
   let values=[name,myComment,id];
   let sql= `UPDATE myMovies SET moviename = $1, comment = $2 WHERE id = $3`;
   client.query(sql,values).then((result)=>{
-    res.send("Done");
+    res.stutus(201).res.send("Done");
   }).catch((err)=>{
     error500(err,req,res);
   })
@@ -137,7 +137,7 @@ function deleteMovie(req,res){
   let values=[id];
   let sql=`DELETE FROM myMovies WHERE id = $1`;
   client.query(sql,values).then((result)=>{
-    res.send('Done');
+    res.stutus(201).res.send('Done');
   }).catch((err)=>{
     error500(err,req,res);
   })
