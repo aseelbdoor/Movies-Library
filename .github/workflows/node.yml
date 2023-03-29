@@ -1,2 +1,0 @@
-- name: Railway Deploy
-  uses: bervProject/railway-deploy@0.1.0-beta
